@@ -40,7 +40,7 @@ The five clean outputs are assumed to round-trip normally and therefore do not c
 
 ## Tests and what remains untested
 
-The lab CI runs the upstream offline Bitcoin desk simulation and reflection/key-path compatibility tests, plus the lab's offline accounting tests. The upstream tests passed in the first recorded run; the latest run also shows the lab accounting-model test passing, while the full upstream simulation is still running at the time of this draft.
+The lab CI runs the upstream offline Bitcoin desk simulation and reflection/key-path compatibility tests, plus the lab's offline accounting tests. The complete workflow passed in run #3 and again in run #4: the lab accounting-model tests, upstream Bitcoin desk simulation, and reflection/key-path compatibility test all completed successfully.
 
 Not tested here: a Signet end-to-end swap; a real reflection proof generated from a desk output; Bitcoin reorgs and explorer disagreement; crash/restart at every signing phase; a live Ethereum mint; production desk liquidity, pricing, monitoring, and operator runbooks. No mainnet funds or production secrets have been used.
 
