@@ -70,9 +70,18 @@ The executable model in `sim/rebalance-model.mjs` uses explicit inputs and never
 | Fee/price makes swap uneconomic | Explicit fee schedule and minimum output floor; no automatic floor reductions |
 | Mainnet key or funds exposed during testing | Signet/test fixtures only; no secrets in repo or logs |
 
+## Existing upstream tests and validation added in this lab
+
+The upstream repository already contains focused, offline/simulated tests for the desk; the lab now has a GitHub Actions workflow at `.github/workflows/upstream-btcswap.yml` that checks out upstream `main`, installs its exact lockfile dependencies with `npm ci`, and runs:
+
+- `node tests/btcswap-sim.test.mjs` — ten scenarios covering a completed swap, early claim, refusal of untracked desk inventory, unreachable desk refund, insufficient desk inventory, holder timeout/refund, signing-session authorization/replay protection, per-swap keys, malformed/immature offers, and witness/output binding.
+- `node tests/btcswap-reflect.test.mjs` — checks that the tracked desk output and holder key-path claim are folded as live by the reflection model and that the adaptor secret is recovered.
+
+The workflow file is committed, but GitHub has not reported a run in the Actions API yet. This environment cannot clone the upstream repository locally (outbound GitHub DNS/network is unavailable), so **these commands have not been executed by me**. The first green Actions run is still required before claiming the tests pass.
+
 ## What is not yet proven
 
-- I have inspected the upstream implementation and documented its interfaces, but have not run the full upstream test suite in this isolated repository.
+- I have inspected the upstream implementation and test fixtures, but have not observed a green run of the upstream tests from this lab.
 - I have not executed a signet end-to-end swap.
 - I have not generated or verified a real reflection proof for the desk output.
 - I have not tested Bitcoin reorgs, explorer disagreement, server crash/restart during every signing phase, or a live Ethereum mint.
