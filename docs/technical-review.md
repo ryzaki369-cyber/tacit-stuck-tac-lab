@@ -77,11 +77,11 @@ The upstream repository already contains focused, offline/simulated tests for th
 - `node tests/btcswap-sim.test.mjs` — ten scenarios covering a completed swap, early claim, refusal of untracked desk inventory, unreachable desk refund, insufficient desk inventory, holder timeout/refund, signing-session authorization/replay protection, per-swap keys, malformed/immature offers, and witness/output binding.
 - `node tests/btcswap-reflect.test.mjs` — checks that the tracked desk output and holder key-path claim are folded as live by the reflection model and that the adaptor secret is recovered.
 
-The workflow file is committed, but GitHub has not reported a run in the Actions API yet. This environment cannot clone the upstream repository locally (outbound GitHub DNS/network is unavailable), so **these commands have not been executed by me**. The first green Actions run is still required before claiming the tests pass.
+The first GitHub Actions run completed green on 2026-11-25: upstream dependencies installed, `btcswap-sim.test.mjs` passed, and `btcswap-reflect.test.mjs` passed. The run is recorded at https://github.com/ryzaki369-cyber/tacit-stuck-tac-lab/actions/runs/45581204444. A follow-up commit adds the lab's own `tests/rebalance-model.test.mjs` to CI; that new run is pending and must pass before the local accounting model is described as CI-verified.
 
 ## What is not yet proven
 
-- I have inspected the upstream implementation and test fixtures, but have not observed a green run of the upstream tests from this lab.
+- The upstream simulation and reflection/key-path tests have passed in GitHub Actions; this does not establish a signet end-to-end deployment.
 - I have not executed a signet end-to-end swap.
 - I have not generated or verified a real reflection proof for the desk output.
 - I have not tested Bitcoin reorgs, explorer disagreement, server crash/restart during every signing phase, or a live Ethereum mint.
@@ -90,4 +90,4 @@ The workflow file is committed, but GitHub has not reported a run in the Actions
 
 ## Bounty fit
 
-This lab currently supports a design/prototype review of option A. It is not yet a complete bounty submission. Before proposing upstream changes, the next validation step is to run the upstream desk tests and add a signet integration test proving: stuck input accepted, tracked output paid, holder claims it, desk takes the input, and the output passes the existing bridge review.
+This lab currently supports a design/prototype review of option A. It is not yet a complete bounty submission. Before proposing upstream changes, the next validation step is to add a signet integration test proving: stuck input accepted, tracked output paid, holder claims it, desk takes the input, and the output passes the existing bridge review.
