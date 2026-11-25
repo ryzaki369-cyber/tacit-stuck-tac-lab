@@ -18,8 +18,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: z0r0z/tacit
-          ref: main
+          ref: e4bb9297880502d5b8a341383b0baf69eefff509
           path: tacit-upstream
+      - name: Record pinned upstream revision
+        working-directory: tacit-upstream
+        run: test "$(git rev-parse HEAD)" = "e4bb9297880502d5b8a341383b0baf69eefff509" && git rev-parse HEAD
       - name: Set up Node 22
         uses: actions/setup-node@v4
         with:
