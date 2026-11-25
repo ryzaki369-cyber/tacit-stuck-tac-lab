@@ -28,6 +28,8 @@ jobs:
           cache-dependency-path: tacit-upstream/package-lock.json
       - name: Run lab offline inventory model tests
         run: node tests/rebalance-model.test.mjs
+      - name: Check Signet deployment readiness (offline, no broadcast)
+        run: node tests/signet-readiness.test.mjs tacit-upstream
       - name: Install upstream locked dependencies
         working-directory: tacit-upstream
         run: npm ci
