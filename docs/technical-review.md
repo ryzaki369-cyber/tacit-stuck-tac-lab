@@ -45,13 +45,13 @@ Let:
 - (u_i) be the Bitcoin-side TAC received, potentially untracked.
 - (f_i) be the desk fee/haircut paid to obtain tracked TAC.
 
-Without recovery, Ethereum-side lendable inventory after (N) equal bridges is:
+Let `C` be the set of clean notes that return through the ordinary bridge and `T` the set of stuck notes accepted by the desk. Without recovery, Ethereum-side lendable inventory after (N) bridges is:
 
-`S(N) = max(0, S0 - sum(a_i))`
+`S(N) = max(0, S0 - sum(a_i) + sum(i in C, u_i))`
 
-With a funded desk, and assuming every stuck note can be swapped and its tracked output successfully bridged back, the recovered amount is `u_i - f_i`. The inventory becomes:
+With a funded desk, and assuming every stuck note can be swapped and its tracked output successfully bridged back, the inventory becomes:
 
-`S_recovered(N) = max(0, S0 - sum(a_i) + sum(max(0, u_i - f_i)))`
+`S_recovered(N) = max(0, S0 - sum(a_i) + sum(i in C, u_i) + sum(i in T, max(0, u_i - f_i)))`
 
 This is an accounting upper bound, not a liquidity guarantee. Desk capacity, counterparty completion, fees, confirmations, proof availability, and the holder's bridge costs constrain realized recovery.
 
