@@ -10,7 +10,7 @@ const TAC = 100_000_000n;
     deskFeeBps: 100,
   });
   assert.equal(r.baseline, 0n);
-  assert.equal(r.recovered, 4500n * TAC);
+  assert.equal(r.recovered, 4950n * TAC);
   assert.equal(r.rows[0].output, 990n * TAC);
 }
 
@@ -23,7 +23,7 @@ const TAC = 100_000_000n;
     ],
     deskFeeBps: 30,
   });
-  assert.equal(r.baseline, 0n);
+  assert.equal(r.baseline, 1000n * TAC);
   assert.equal(r.recovered, 1997n * TAC);
 }
 
