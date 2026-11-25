@@ -1,0 +1,37 @@
+name: Upstream Bitcoin swap desk tests
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  btc-swap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out lab
+        uses: actions/checkout@v4
+      - name: Check out upstream Tacit
+        uses: actions/checkout@v4
+        with:
+          repository: z0r0z/tacit
+          ref: main
+          path: tacit-upstream
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tacit-upstream/package-lock.json
+      - name: Install upstream locked dependencies
+        working-directory: tacit-upstream
+        run: npm ci
+      - name: Run complete Bitcoin swap simulation
+        working-directory: tacit-upstream
+        run: node tests/btcswap-sim.test.mjs
+      - name: Run reflection/key-path compatibility test
+        working-directory: tacit-upstream
+        run: node tests/btcswap-reflect.test.mjs
