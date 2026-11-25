@@ -77,7 +77,7 @@ The upstream repository already contains focused, offline/simulated tests for th
 - `node tests/btcswap-sim.test.mjs` — ten scenarios covering a completed swap, early claim, refusal of untracked desk inventory, unreachable desk refund, insufficient desk inventory, holder timeout/refund, signing-session authorization/replay protection, per-swap keys, malformed/immature offers, and witness/output binding.
 - `node tests/btcswap-reflect.test.mjs` — checks that the tracked desk output and holder key-path claim are folded as live by the reflection model and that the adaptor secret is recovered.
 
-The first GitHub Actions run completed green on 2026-11-25: upstream dependencies installed, `btcswap-sim.test.mjs` passed, and `btcswap-reflect.test.mjs` passed. The run is recorded at https://github.com/ryzaki369-cyber/tacit-stuck-tac-lab/actions/runs/45581204444. A follow-up commit adds the lab's own `tests/rebalance-model.test.mjs` to CI; that new run is pending and must pass before the local accounting model is described as CI-verified.
+The first GitHub Actions run completed green on 2026-11-25: upstream dependencies installed, `btcswap-sim.test.mjs` passed, and `btcswap-reflect.test.mjs` passed. The run is recorded at https://github.com/ryzaki369-cyber/tacit-stuck-tac-lab/actions/runs/45581204444. The lab's own `tests/rebalance-model.test.mjs` is also included in CI. Workflow runs #3 and #4 both passed all steps, including the local accounting model, upstream desk simulation, and reflection/key-path compatibility tests.
 
 ## What is not yet proven
 
