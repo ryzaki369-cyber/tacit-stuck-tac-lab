@@ -1,6 +1,7 @@
 # Stuck TAC recovery desk — option A
 
-**Entry status: design/prototype for review; not production-ready.** This entry reuses Tacit's existing Bitcoin-to-Bitcoin swap desk rather than changing the live bridge.
+**Entry status: design/prototype for review; not production-ready.**  
+**Requested reward address:** `0x564B2D23Fe4E4d08128B024CFA81E7D86EEc521A` This entry reuses Tacit's existing Bitcoin-to-Bitcoin swap desk rather than changing the live bridge.
 
 ## Proposal
 
